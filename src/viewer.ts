@@ -68,7 +68,27 @@ export class Viewer {
     try {
       const osmBuildings = await Cesium.Cesium3DTileset.fromIonAssetId(96188);
       this.cesium.scene.primitives.add(osmBuildings);
+      // Vänta på att tilesetet är klart innan styling appliceras
       console.log("✅ Cesium OSM Buildings laddades in!");
+
+      // Applicera defaultStyle (om det finns) och döljer Skara Domkyrka
+      const extras = osmBuildings.asset.extras;
+      if (
+        Cesium.defined(extras) &&
+        Cesium.defined(extras.ion) &&
+        Cesium.defined(extras.ion.defaultStyle)
+      ) {
+        osmBuildings.style = new Cesium.Cesium3DTileStyle({
+          ...extras.ion.defaultStyle,
+          show: {
+            conditions: [
+              // ["${name} === 'Skara Domkyrka'", "false"], // Hide the Church
+              ["${name} === 'Sydney Opera House'", "false"], // Hide Sydney Opera House
+              ["true", "true"],
+            ],
+          },
+        });
+      }
     } catch (error) {
       console.error("❌ Kunde inte ladda OSM Buildings:", error);
     }
