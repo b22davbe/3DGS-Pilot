@@ -24,10 +24,7 @@ export class Viewer {
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0MWVmMWFiNi00YWM1LTQxZWUtOTFkYy0xM2M2MmUzYTZjMDIiLCJpZCI6MjgxMDQ1LCJpYXQiOjE3NDEwOTkyNjl9.Ji4X--LQ3PLpuJoBnA-aipNj642E9aSV3SWi-TIP86g";
 
     // Använd Cesium World Terrain via Ion-asset ID 1
-    const terrainProvider = await Cesium.CesiumTerrainProvider.fromIonAssetId(1, {
-      requestWaterMask: true,
-      requestVertexNormals: true,
-    });
+    const terrainProvider = await Cesium.CesiumTerrainProvider.fromIonAssetId(1);
 
     this.cesium = new Cesium.Viewer("cesium", {
       terrainProvider: terrainProvider,
