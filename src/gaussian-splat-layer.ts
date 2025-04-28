@@ -33,50 +33,50 @@ export class GaussianSplatLayer {
       case "q":
         this.scene.rotateY(0.005);
         break;
-      case "w":
+      case "e":
         this.scene.rotateY(-0.005);
         break;
-      case "a":
+      case "w":
         this.scene.rotateX(0.005);
         break;
       case "s":
         this.scene.rotateX(-0.005);
         break;
-      case "z":
+      case "a":
         this.scene.rotateZ(0.005);
         break;
-      case "x":
+      case "d":
         this.scene.rotateZ(-0.005);
         break;
-      case "y":
-        this.location.lat += 0.0000025;
-        this.updatePosition();
-        break;
-      case "h":
-        this.location.lat -= 0.0000025;
-        this.updatePosition();
-        break;
-      case "j":
-        this.location.lon += 0.0000025;
+      case "t":
+        this.location.lat += 0.0000100;
         this.updatePosition();
         break;
       case "g":
-        this.location.lon -= 0.0000025;
+        this.location.lat -= 0.0000100;
         this.updatePosition();
         break;
-      case "o": // Height increment
+      case "f":
+        this.location.lon += 0.0000100;
+        this.updatePosition();
+        break;
+      case "h":
+        this.location.lon -= 0.0000100;
+        this.updatePosition();
+        break;
+      case "m": // Height increment
         this.location.height += 1;
         this.updatePosition();
         break;
-      case "l": // Height decrement
+      case "n": // Height decrement
         this.location.height -= 1;
         this.updatePosition();
         break;
-      case "m":
+      case "+":
         this.scale += 0.05;
         this.updateScale();
         break;
-      case "n":
+      case "-":
         if (this.scale > 0.05) {
           this.scale -= 0.05;
           this.updateScale();
@@ -152,6 +152,7 @@ export class GaussianSplatLayer {
         mesh.scale.set(this.scale, this.scale, this.scale);
         this.scene.add(mesh);
         this.ready = true;
+        document.dispatchEvent(new CustomEvent('domkyrkaLoaded'));
       });
   }
 }
