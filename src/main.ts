@@ -22,3 +22,15 @@ viewer.ready.then(() => {
     viewer.addGaussianSplatLayer(churchLayer);
   }
 });
+
+// Grid-parametrar
+const numRows = 3;         // 1, 2 or 3
+const numCols = 3;         // 1, 2 or 3
+const totalChurches = numRows * numCols;
+const offsetDistance = 100; // avstånd (i meter) mellan kyrkorna
+const baseLat = 58.38579551999975;  // baslatitud (ursprunglig kyrkecentral)
+const baseLon = 13.44098813000049;   // baslongitud (ursprunglig kyrkecentral)
+const baseHeight = 411.34;           // bas höjd
+const heading = 46.79851;            // ursprunglig heading
+const frontBearing = heading;        // "framåt" = heading
+const rightBearing = heading + 90;     // "höger" = heading + 90
