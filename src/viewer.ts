@@ -12,7 +12,7 @@ export class Viewer {
     // Skapa viewern asynkront och spara ready-promisen
     this.ready = this.createViewer().then(() => {
       this.createOverlay();
-      // Kör Three.js-rendering efter att Cesium har renderat klart
+      // Kör Three.js-rendering efter att Cesium har renderat 
       this.cesium.scene.postRender.addEventListener(() => {
         this.threeOverlay.render();
       });
